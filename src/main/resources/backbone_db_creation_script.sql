@@ -1,0 +1,33 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+CREATE SCHEMA IF NOT EXISTS `backbone` DEFAULT CHARACTER SET utf8 ;
+USE `backbone`;
+
+CREATE TABLE IF NOT EXISTS `backbone`.`contact_group` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `group_name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `category_unq_1` (`group_name` ASC))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `backbone`.`contact` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `group_id` INT NOT NULL,
+  `contact_name` VARCHAR(50) NOT NULL,
+  `phone` VARCHAR(20) NOT NULL,
+  `image` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `contact_idx_1` (`contact_name` ASC),
+  INDEX `contact_idx_2` (`phone` ASC),
+  CONSTRAINT `contact_fk_1`
+    FOREIGN KEY (`group_id`)
+    REFERENCES `backbone`.`contact_group` (`id`))
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
