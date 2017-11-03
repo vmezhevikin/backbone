@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div id="createDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createModal">
+        <div id="createDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createDialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -62,32 +62,6 @@
         </div>
     </div>
 </div>
-<script id="contactTemplate" type="text/template">
-    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 contactView">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <img src="{{ image }}" alt="{{ image }}"
-                     class="img-responsive img-thumbnail center-block">
-                <div>
-                    <h4 class="text-center">{{ name }}</h4>
-                    <p class="text-center">
-                        <small>{{ group.id }}</small>
-                    </p>
-                    <p class="text-center">{{ phone }}</p>
-                    <button class="btn btn-danger center-block delete-button">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
-<script src="/static/js/lib/jquery.js"></script>
-<script src="/static/js/lib/bootstrap.js"></script>
-<script src="/static/js/lib/underscore.js"></script>
-<script src="/static/js/lib/backbone.js"></script>
-<script src="/static/js/model/contact.js"></script>
-<script src="/static/js/model/contactList.js"></script>
-<script src="/static/js/view/contact.js"></script>
-<script src="/static/js/view/contactList.js"></script>
-<script src="/static/js/app.js"></script>
+<script data-main="/static/js/app" src="/static/js/lib/require/require-2.3.5.js"></script>
 </body>
 </html>

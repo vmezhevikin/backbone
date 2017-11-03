@@ -1,24 +1,25 @@
-var app = app || {};
+define(['jquery', 'underscore', 'backbone', 'text!template/contact.html'],
+    function ($, _, Backbone, contactTemplate) {
 
-app.ContactView = Backbone.View.extend({
+        var ContactView = Backbone.View.extend({
 
-    tagName: 'div',
-    className: 'contactView',
-    template: _.template($('#contactTemplate').html()),
+            tagName: 'div',
+            className: 'contactView',
+            template: _.template(contactTemplate),
 
-    events: {
-        'click .delete-button': 'deleteContact'
-    },
+            events: {
+                'click .delete-button': 'deleteContact'
+            },
 
-    render: function () {
-        _.templateSettings.interpolate = /\{\{(.+?)\}\}/g;
-        this.$el.html(_.template($('#contactTemplate').html())(this.model.attributes));
-        //this.$el.html(this.template(this.model.attributes));
-        return this;
-    },
+            render: function () {
+                this.$el.html(this.template(this.model.attributes));
+                return this;
+            },
 
-    deleteContact: function () {
-        this.model.destroy();
-        this.remove();
-    }
-});
+            deleteContact: function () {
+                this.model.destroy();
+                this.remove();
+            }
+        });
+        return ContactView;
+    });

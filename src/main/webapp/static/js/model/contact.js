@@ -1,12 +1,15 @@
-var app = app || {};
+define(['underscore', 'backbone'],
+    function (_, Backbone) {
 
-app.Contact = Backbone.Model.extend({
-    defaults: {
-        'name': 'name',
-        'phone': '+3801234567',
-        'image': '/img/0.jpg',
-        'group': {
-            'id': 1
-        }
-    }
-});
+        var Contact = Backbone.Model.extend({
+            defaults: {
+                'name': 'name',
+                'phone': '+3801234567',
+                'image': '/img/0.jpg',
+                'group': {
+                    'id': 1
+                }
+            }
+        });
+        return Contact;
+    });

@@ -1,6 +1,10 @@
-var app = app || {};
+define(['underscore', 'backbone', 'model/contact'],
+    function (_, Backbone, Contact) {
 
-app.ContactList = Backbone.Collection.extend({
-    model: app.Contact,
-    url: '/api/contact'
-});
+        var ContactList = Backbone.Collection.extend({
+            model: Contact,
+            url: '/api/contact'
+        });
+        //return new ContactList();
+        return ContactList;
+    });

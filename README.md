@@ -1,19 +1,41 @@
 ## Backbone practice
 
-```bash
+#### Single page application for managing contact list
+
+##### Java
+
+```
 jdk - oraclejdk8
-build - maven
-log - slf4j(log4j)
+build - maven 3.3
+log - slf4j-log4j12 1.7
 db - mysql
-web frameworks - spring (ioc, data, mvc)
-persistance - hibernate
-css, js, html framework - bootstrap
-js framework - backbone
+lombok - 1.16
 ```
 
-### One page web application for managing contact list:
+##### Java frameworks
 
-```bash
+```
+Hibernate 5.2
+Spring Data JPA 1.11
+Spring Framework 4.3
+Spring MVC 4.3
+Spring Data Rest 3.2 as REST exporter
+Spring Security 3.1 as security framework
+```
+
+##### JavaScript frameworks
+
+```
+RequireJS 2.3
+RequireJS (Text) 2.0
+jQuery 3.2
+Backbone 1.3
+Bootstrap 3.3
+```
+
+##### Features
+
+```
 Contact list
 Add/delete contact
 ```

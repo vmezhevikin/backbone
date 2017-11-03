@@ -1,45 +1,47 @@
-var app = app || {};
+define(['bootstrap', 'underscore', 'backbone', 'model/contactList', 'view/contact'],
+    function ($, _, Backbone, ContactList, ContactView) {
 
-app.ContactListView = Backbone.View.extend({
+        var ContactListView = Backbone.View.extend({
 
-    el: '#contactList',
+            el: '#contactList',
 
-    events: {
-        'click button#createButton': 'createContact'
-    },
+            events: {
+                'click button#createButton': 'createContact'
+            },
 
-    initialize: function () {
-        this.collection = new app.ContactList();
-        this.collection.fetch({reset: true});
-        this.render();
+            initialize: function () {
+                this.collection = new ContactList();
+                this.collection.fetch({reset: true});
+                this.render();
 
-        this.listenTo(this.collection, 'add', this.renderContact);
-        this.listenTo(this.collection, 'reset', this.render);
-    },
+                this.listenTo(this.collection, 'add', this.renderContact);
+                this.listenTo(this.collection, 'reset', this.render);
+            },
 
-    render: function () {
-        this.collection.each(function (contact) {
-            this.renderContact(contact);
-        }, this);
-    },
+            render: function () {
+                this.collection.each(function (contact) {
+                    this.renderContact(contact);
+                }, this);
+            },
 
-    renderContact: function (contact) {
-        var contactView = new app.ContactView({
-            model: contact
-        });
-        this.$el.append(contactView.render().el);
-    },
+            renderContact: function (contact) {
+                var contactView = new ContactView({
+                    model: contact
+                });
+                this.$el.append(contactView.render().el);
+            },
 
-    createContact: function () {
-        var formData = {
-            name: $('#name').val(),
-            phone: $('#phone').val(),
-            group: {
-                id: $('#group').val()
+            createContact: function () {
+                var formData = {
+                    name: $('#name').val(),
+                    phone: $('#phone').val(),
+                    group: {
+                        id: $('#group').val()
+                    }
+                };
+                this.collection.create(formData);
+                $('#createDialog').modal('hide');
             }
-        };
-        console.log('formData ' + JSON.stringify(formData));
-        this.collection.create(formData);
-        $('#createDialog').modal('hide');
-    }
-});
+        });
+        return ContactListView;
+    });
