@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'text!template/contact.html'],
     function ($, _, Backbone, contactTemplate) {
 
-        var ContactView = Backbone.View.extend({
+        return Backbone.View.extend({
 
             tagName: 'div',
             className: 'contactView',
@@ -21,5 +21,4 @@ define(['jquery', 'underscore', 'backbone', 'text!template/contact.html'],
                 this.remove();
             }
         });
-        return ContactView;
     });

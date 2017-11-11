@@ -21,7 +21,13 @@ require.config({
         }
     }
 });
-require(['view/contactList'],
-    function (ContactListView) {
-        new ContactListView();
+require(['model/contactList', 'view/menu', 'view/contactList'],
+    function (ContactList, MenuView, ContactListView) {
+        var contacts = new ContactList;
+        new MenuView({
+            collection: contacts
+        });
+        new ContactListView({
+            collection: contacts
+        });
     });

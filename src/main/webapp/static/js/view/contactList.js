@@ -1,16 +1,11 @@
-define(['bootstrap', 'underscore', 'backbone', 'model/contactList', 'view/contact'],
-    function ($, _, Backbone, ContactList, ContactView) {
+define(['jquery', 'underscore', 'backbone', 'view/contact'],
+    function ($, _, Backbone, ContactView) {
 
-        var ContactListView = Backbone.View.extend({
+        return Backbone.View.extend({
 
             el: '#contactList',
 
-            events: {
-                'click button#createButton': 'createContact'
-            },
-
             initialize: function () {
-                this.collection = new ContactList();
                 this.collection.fetch({reset: true});
                 this.render();
 
@@ -29,19 +24,6 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contactList', 'view/contac
                     model: contact
                 });
                 this.$el.append(contactView.render().el);
-            },
-
-            createContact: function () {
-                var formData = {
-                    name: $('#name').val(),
-                    phone: $('#phone').val(),
-                    group: {
-                        id: $('#group').val()
-                    }
-                };
-                this.collection.create(formData);
-                $('#createDialog').modal('hide');
             }
         });
-        return ContactListView;
     });

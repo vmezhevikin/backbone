@@ -1,7 +1,7 @@
 define(['underscore', 'backbone'],
     function (_, Backbone) {
 
-        var Contact = Backbone.Model.extend({
+        return Backbone.Model.extend({
             defaults: {
                 'name': 'name',
                 'phone': '+3801234567',
@@ -11,5 +11,4 @@ define(['underscore', 'backbone'],
                 }
             }
         });
-        return Contact;
     });
