@@ -9,12 +9,7 @@
     <title>Backbone</title>
     <link rel="stylesheet" href="/static/css/lib/bootstrap.css">
     <link rel="stylesheet" href="/static/css/app.css">
+    <script data-main="/static/js/app" src="/static/js/lib/require/require-2.3.5.js"></script>
 </head>
-<body>
-<div class="container-fluid">
-    <div id="menu" class="row"></div>
-    <div id="contactList" class="row"></div>
-</div>
-<script data-main="/static/js/app" src="/static/js/lib/require/require-2.3.5.js"></script>
-</body>
+<body></body>
 </html>
