@@ -12,5 +12,5 @@
     <link rel="stylesheet" href="/static/css/app.css">
     <script data-main="/static/js/app" src="/static/js/lib/require/require-2.3.5.js"></script>
 </head>
-<body></body>
+<body id="app"></body>
 </html>

@@ -21,7 +21,7 @@ require.config({
         }
     }
 });
-require(['model/contactList', 'view/app'],
+require(['model/contact-list', 'view/app'],
     function (ContactList, AppView) {
         var contacts = new ContactList;
         new AppView({

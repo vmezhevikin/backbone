@@ -1,9 +1,9 @@
-define(['bootstrap', 'underscore', 'backbone', 'text!template/delete-modal.html'],
-    function ($, _, Backbone, deleteModalTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'text!template/delete-dialog.html'],
+    function ($, _, Backbone, deleteDialogTemplate) {
 
         return Backbone.View.extend({
 
-            template: _.template(deleteModalTemplate),
+            template: _.template(deleteDialogTemplate),
 
             events: {
                 'click .confirm-delete-button': 'deleteContact'

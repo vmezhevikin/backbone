@@ -1,15 +1,15 @@
-define(['bootstrap', 'underscore', 'backbone', 'view/menu', 'view/contactList', 'text!template/app.html'],
-    function ($, _, Backbone, MenuView, ContactListView, appTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'view/add-contact', 'view/contact-list', 'text!template/app.html'],
+    function ($, _, Backbone, AddContactView, ContactListView, appTemplate) {
 
         return Backbone.View.extend({
 
-            el: 'body',
+            el: '#app',
             tagName: 'div',
             template: _.template(appTemplate),
 
             initialize: function () {
                 this.render();
-                new MenuView({
+                new AddContactView({
                     collection: this.collection
                 });
                 new ContactListView({

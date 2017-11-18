@@ -3,7 +3,7 @@ define(['jquery', 'underscore', 'backbone', 'view/contact'],
 
         return Backbone.View.extend({
 
-            el: '#contactList',
+            el: '#contact-list',
 
             initialize: function () {
                 this.collection.fetch({reset: true});

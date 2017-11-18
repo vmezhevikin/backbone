@@ -1,14 +1,14 @@
-define(['bootstrap', 'underscore', 'backbone', 'view/deleteModal', 'text!template/contact.html'],
-    function ($, _, Backbone, DeleteModal, contactTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'view/delete-dialog', 'text!template/contact.html'],
+    function ($, _, Backbone, DeleteDialog, contactTemplate) {
 
         return Backbone.View.extend({
 
             tagName: 'div',
-            className: 'contactView',
+            className: 'contact-view',
             template: _.template(contactTemplate),
 
             events: {
-                'click .delete-button': 'showModal'
+                'click .delete-button': 'showDeleteDialog'
             },
 
             initialize: function () {
@@ -17,25 +17,27 @@ define(['bootstrap', 'underscore', 'backbone', 'view/deleteModal', 'text!templat
 
             render: function () {
                 this.$el.html(this.template(this.model.attributes));
-                this.deleteModal = new DeleteModal({
+                this.deleteDialog = new DeleteDialog({
                     model: this.model
                 });
-                this.$el.append(this.deleteModal.$el);
-                this.listenTo(this.deleteModal, 'deletion-confirmed', this.deleteContact);
+                this.$el.append(this.deleteDialog.$el);
+
+                this.listenTo(this.deleteDialog, 'deletion-confirmed', this.deleteContact);
+
                 return this;
             },
 
-            showModal: function () {
-                this.deleteModal.show();
+            showDeleteDialog: function () {
+                this.deleteDialog.show();
             },
 
-            hideModal: function () {
-                this.deleteModal.hide();
+            hideDeleteDialog: function () {
+                this.deleteDialog.hide();
             },
 
             deleteContact: function () {
                 this.model.destroy();
-                this.deleteModal.remove();
+                this.deleteDialog.remove();
                 this.remove();
             }
         });

@@ -1,9 +1,9 @@
-define(['bootstrap', 'underscore', 'backbone', 'text!template/menu.html'],
+define(['bootstrap', 'underscore', 'backbone', 'text!template/add-contact.html'],
     function ($, _, Backbone, menuTemplate) {
 
         return Backbone.View.extend({
 
-            el: '#menu',
+            el: '#add-contact',
             tagName: 'div',
             template: _.template(menuTemplate),
 
