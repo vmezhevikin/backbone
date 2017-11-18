@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Backbone</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <link rel="stylesheet" href="/static/css/lib/bootstrap.css">
     <link rel="stylesheet" href="/static/css/app.css">
     <script data-main="/static/js/app" src="/static/js/lib/require/require-2.3.5.js"></script>
