@@ -1,4 +1,4 @@
-define(['bootstrap', 'underscore', 'backbone', 'text!template/deleteModal.html'],
+define(['bootstrap', 'underscore', 'backbone', 'text!template/delete-modal.html'],
     function ($, _, Backbone, deleteModalTemplate) {
 
         return Backbone.View.extend({

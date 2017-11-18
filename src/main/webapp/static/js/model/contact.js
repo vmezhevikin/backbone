@@ -5,7 +5,7 @@ define(['underscore', 'backbone'],
             defaults: {
                 'name': 'name',
                 'phone': '+3801234567',
-                'image': '/img/0.jpg',
+                'image': '',
                 'group': {
                     'id': 1
                 }

@@ -1,9 +1,11 @@
 package com.vmezhevikin.backbone.service.impl;
 
+import com.vmezhevikin.backbone.*;
 import com.vmezhevikin.backbone.entity.*;
 import com.vmezhevikin.backbone.repository.*;
 import com.vmezhevikin.backbone.service.*;
 import java.util.*;
+import org.apache.commons.lang.*;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -36,7 +38,9 @@ public class DataServiceImpl implements DataService {
     @Transactional
     public Contact createContact(Contact contact) {
         LOGGER.info("createContact contact={}", contact);
-        contact.setImage("/img/01.jpg");
+        if (StringUtils.isEmpty(contact.getImage())) {
+            contact.setImage(Constants.PLACE_HOLDER_IMG);
+        }
         return contactRepository.save(contact);
     }
 
