@@ -15,9 +15,8 @@ define(['bootstrap', 'underscore', 'backbone', 'text!template/add-dialog.html'],
 
             render: function () {
                 this.$el.html(this.template);
-                this.$modalEl = this.$el.children('.modal');
+                this.$modalEl = $('.modal', this.$el);
 
-                //this.listenTo(this.$modalEl, 'hidden.bs.modal', this.clearForm);
                 this.$modalEl.on('hidden.bs.modal', this.clearForm);
 
                 return this;
@@ -32,15 +31,15 @@ define(['bootstrap', 'underscore', 'backbone', 'text!template/add-dialog.html'],
             },
 
             clearForm: function () {
-                $('#name, #phone').val('');
+                $('.input-name, .input-phone').val('');
             },
 
             getFormData:function () {
                 return {
-                    name: $('#name').val(),
-                    phone: $('#phone').val(),
+                    name: $('.input-name', this.$el).val(),
+                    phone: $('.input-phone', this.$el).val(),
                     group: {
-                        id: $('#group').val()
+                        id: $('.input-group', this.$el).val()
                     }
                 };
             },
