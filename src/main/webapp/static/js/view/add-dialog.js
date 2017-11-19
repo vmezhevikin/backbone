@@ -31,7 +31,7 @@ define(['bootstrap', 'underscore', 'backbone', 'text!template/add-dialog.html'],
             },
 
             clearForm: function () {
-                $('.input-name, .input-phone').val('');
+                $('.input-name, .input-phone', this.$el).val('');
             },
 
             getFormData:function () {
