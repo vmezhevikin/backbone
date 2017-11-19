@@ -1,47 +1,9 @@
 <div class="col-xs-12">
     <div class="panel panel-default">
         <div class="panel-body">
-            <button type="button" class="btn btn-success pull-right" data-toggle="modal"
-                    data-target="#add-dialog">Add
+            <button id="add-button" type="button" class="btn btn-success pull-right">Add
                 new contact
             </button>
-        </div>
-    </div>
-</div>
-<div id="add-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="add-dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Add new contact</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name"/>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Phone"/>
-                </div>
-                <div class="form-group">
-                    <label for="group">Group</label>
-                    <select class="form-control" id="group">
-                        <option value="1">Name1</option>
-                        <option value="2">Name2</option>
-                        <option value="3">Name3</option>
-                        <option value="4">Name4</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                </button>
-                <button id="createButton" type="button" class="btn btn-primary">Create
-                </button>
-            </div>
         </div>
     </div>
 </div>

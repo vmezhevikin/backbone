@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone', 'view/contact'],
             el: '#contact-list',
 
             initialize: function () {
-                this.collection.fetch({reset: true});
+                this.collection.fetch({ reset: true });
                 this.render();
 
                 this.listenTo(this.collection, 'add', this.renderContact);
@@ -23,7 +23,7 @@ define(['jquery', 'underscore', 'backbone', 'view/contact'],
                 var contactView = new ContactView({
                     model: contact
                 });
-                this.$el.append(contactView.render().el);
+                this.$el.append(contactView.$el);
             }
         });
     });

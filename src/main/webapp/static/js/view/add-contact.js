@@ -1,14 +1,14 @@
-define(['bootstrap', 'underscore', 'backbone', 'text!template/add-contact.html'],
-    function ($, _, Backbone, menuTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'view/add-dialog', 'text!template/add-contact.html'],
+    function ($, _, Backbone, AddDialog, addContactTemplate) {
 
         return Backbone.View.extend({
 
             el: '#add-contact',
             tagName: 'div',
-            template: _.template(menuTemplate),
+            template: _.template(addContactTemplate),
 
             events: {
-                'click button#createButton': 'createContact'
+                'click button#add-button': 'showAddDialog'
             },
 
             initialize: function () {
@@ -17,27 +17,24 @@ define(['bootstrap', 'underscore', 'backbone', 'text!template/add-contact.html']
 
             render: function () {
                 this.$el.html(this.template);
+                this.addDialog = new AddDialog();
+                this.$el.append(this.addDialog.$el);
+
+                this.listenTo(this.addDialog, 'create-contact', this.createContact);
+
                 return this;
             },
 
+            showAddDialog: function () {
+                this.addDialog.show();
+            },
+
+            hideAddDialog: function () {
+                this.addDialog.hide();
+            },
+
             createContact: function () {
-                this.collection.create(this.getFormData());
-                this.hideModal();
-            },
-
-            getFormData:function () {
-                return {
-                    name: $('#name').val(),
-                    phone: $('#phone').val(),
-                    group: {
-                        id: $('#group').val()
-                    }
-                };
-            },
-
-            hideModal: function () {
-                $('#createDialog').modal('hide');
-                $('#name, #phone').val('');
+                this.collection.create(this.addDialog.getFormData(), { wait: true });
             }
         });
     });
