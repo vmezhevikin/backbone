@@ -1,12 +1,12 @@
-define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'text!template/add-dialog.html'],
-    function ($, _, Backbone, Contact, addDialogTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'text!template/dialog-create.html'],
+    function ($, _, Backbone, dialogUpdateTemplate) {
 
         return Backbone.View.extend({
 
-            template: _.template(addDialogTemplate),
+            template: _.template(dialogUpdateTemplate),
 
             events: {
-                'click .create-button': 'createContact'
+                'click .contact-update-button': 'updateContact'
             },
 
             initialize: function () {
@@ -27,16 +27,10 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'text!template/a
                 this.$modalEl.modal('hide');
             },
 
-            createContact: function () {
-                this.setModelAttributes();
-                this.hide();
-                this.triggerEvent('create-contact');
-            },
-
             updateContact: function () {
                 this.setModelAttributes();
                 this.hide();
-                this.triggerEvent('update-contact');
+                this.triggerEvent('contact-update');
             },
 
             setModelAttributes: function () {

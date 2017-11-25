@@ -1,5 +1,5 @@
-define(['bootstrap', 'underscore', 'backbone', 'view/add-contact', 'view/contact-list', 'text!template/app.html'],
-    function ($, _, Backbone, AddContactView, ContactListView, appTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'view/contact-create', 'view/contact-list', 'text!template/app.html'],
+    function ($, _, Backbone, ContactCreateView, ContactListView, appTemplate) {
 
         return Backbone.View.extend({
 
@@ -9,7 +9,7 @@ define(['bootstrap', 'underscore', 'backbone', 'view/add-contact', 'view/contact
 
             initialize: function () {
                 this.render();
-                new AddContactView({
+                new ContactCreateView({
                     collection: this.collection
                 });
                 new ContactListView({

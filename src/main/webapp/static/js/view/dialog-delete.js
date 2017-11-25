@@ -1,12 +1,12 @@
-define(['bootstrap', 'underscore', 'backbone', 'text!template/delete-dialog.html'],
-    function ($, _, Backbone, deleteDialogTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'text!template/dialog-delete.html'],
+    function ($, _, Backbone, dialogDeleteTemplate) {
 
         return Backbone.View.extend({
 
-            template: _.template(deleteDialogTemplate),
+            template: _.template(dialogDeleteTemplate),
 
             events: {
-                'click .confirm-delete-button': 'deleteContact'
+                'click .contact-delete-button': 'deleteContact'
             },
 
             initialize: function () {
@@ -29,7 +29,7 @@ define(['bootstrap', 'underscore', 'backbone', 'text!template/delete-dialog.html
 
             deleteContact: function () {
                 this.hide();
-                this.triggerEvent('deletion-confirmed');
+                this.triggerEvent('contact-delete');
             },
 
             triggerEvent: function (event) {

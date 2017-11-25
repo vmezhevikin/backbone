@@ -1,5 +1,5 @@
-define(['bootstrap', 'underscore', 'backbone', 'view/delete-dialog', 'view/edit-dialog', 'text!template/contact.html'],
-    function ($, _, Backbone, DeleteDialog, EditDialog, contactTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'view/dialog-delete', 'view/dialog-update', 'text!template/contact.html'],
+    function ($, _, Backbone, DialogDelete, DialogUpdate, contactTemplate) {
 
         return Backbone.View.extend({
 
@@ -8,8 +8,8 @@ define(['bootstrap', 'underscore', 'backbone', 'view/delete-dialog', 'view/edit-
             template: _.template(contactTemplate),
 
             events: {
-                'click .delete-button': 'showDeleteDialog',
-                'click .edit-button': 'showEditDialog'
+                'click .show-dialog-delete': 'showDialogDelete',
+                'click .show-dialog-update': 'showDialogUpdate'
             },
 
             initialize: function () {
@@ -18,72 +18,71 @@ define(['bootstrap', 'underscore', 'backbone', 'view/delete-dialog', 'view/edit-
 
             render: function () {
                 this.$el.html(this.template(this.model.attributes));
-                this.renderDeleteDialog();
-                this.renderEditDialog();
+                this.renderDialogDelete();
+                this.renderDialogUpdate();
                 return this;
             },
 
-            renderDeleteDialog: function () {
-                this.deleteDialog = new DeleteDialog({
+            renderDialogDelete: function () {
+                this.dialogDelete = new DialogDelete({
                     model: this.model
                 });
-                this.$el.append(this.deleteDialog.$el);
-                this.listenTo(this.deleteDialog, 'deletion-confirmed', this.deleteContact);
+                this.$el.append(this.dialogDelete.$el);
+                this.listenTo(this.dialogDelete, 'contact-delete', this.deleteContact);
                 return this;
             },
 
-            showDeleteDialog: function () {
-                this.deleteDialog.show();
+            showDialogDelete: function () {
+                this.dialogDelete.show();
             },
 
-            hideDeleteDialog: function () {
-                this.deleteDialog.hide();
+            hideDialogDelete: function () {
+                this.dialogDelete.hide();
             },
 
-            removeDeleteDialog: function () {
-                this.deleteDialog.remove();
+            removeDialogDelete: function () {
+                this.dialogDelete.remove();
             },
 
             deleteContact: function () {
-                console.log('deleteContact');
                 var that = this;
                 this.model.destroy({
                     wait: true,
                     success: function () {
-                        that.removeDeleteDialog();
-                        that.removeEditDialog();
+                        that.removeDialogDelete();
+                        that.removeDialogUpdate();
                         that.remove();
                     }
                 });
             },
 
-            renderEditDialog: function () {
-                this.editDialog = new EditDialog({
+            renderDialogUpdate: function () {
+                this.dialogUpdate = new DialogUpdate({
                     model: this.model
                 });
-                this.$el.append(this.editDialog.$el);
-                this.listenTo(this.editDialog, 'update-contact', this.editContact);
+                this.$el.append(this.dialogUpdate.$el);
+                this.listenTo(this.dialogUpdate, 'contact-update', this.updateContact);
                 return this;
             },
 
-            showEditDialog: function () {
-                this.editDialog.show();
+            showDialogUpdate: function () {
+                this.dialogUpdate.show();
             },
 
-            hideEditDialog: function () {
-                this.editDialog.hide();
+            hideDialogUpdate: function () {
+                this.dialogUpdate.hide();
             },
 
-            removeEditDialog: function () {
-                this.editDialog.remove();
+            removeDialogUpdate: function () {
+                this.dialogUpdate.remove();
             },
 
-            editContact: function () {
+            updateContact: function () {
                 var that = this;
                 this.model.save(null, {
                     success: function () {
-                        that.removeDeleteDialog();
-                        that.removeEditDialog();
+                        that.removeDialogDelete();
+                        that.removeDialogUpdate();
                         that.render();
                     }
                 });
