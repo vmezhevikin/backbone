@@ -1,5 +1,5 @@
-define(['bootstrap', 'underscore', 'backbone', 'view/add-dialog', 'text!template/add-contact.html'],
-    function ($, _, Backbone, AddDialog, addContactTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'view/add-dialog', 'text!template/add-contact.html'],
+    function ($, _, Backbone, Contact, AddDialog, addContactTemplate) {
 
         return Backbone.View.extend({
 
@@ -17,7 +17,14 @@ define(['bootstrap', 'underscore', 'backbone', 'view/add-dialog', 'text!template
 
             render: function () {
                 this.$el.html(this.template);
-                this.addDialog = new AddDialog();
+                this.renderAddDialog();
+                return this;
+            },
+
+            renderAddDialog: function () {
+                this.addDialog = new AddDialog({
+                    model: new Contact()
+                });
                 this.$el.append(this.addDialog.$el);
                 this.listenTo(this.addDialog, 'create-contact', this.createContact);
                 return this;
@@ -31,8 +38,14 @@ define(['bootstrap', 'underscore', 'backbone', 'view/add-dialog', 'text!template
                 this.addDialog.hide();
             },
 
+            removeAddDialog: function () {
+                this.addDialog.remove();
+            },
+
             createContact: function () {
-                this.collection.create(this.addDialog.getFormData(), { wait: true });
+                this.collection.create(this.addDialog.model, { wait: true });
+                this.removeAddDialog();
+                this.renderAddDialog();
             }
         });
     });

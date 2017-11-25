@@ -10,11 +10,11 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'text!template/a
             },
 
             initialize: function () {
-                this.model = new Contact();
                 this.render();
             },
 
             render: function () {
+                console.log('render');
                 this.$el.html(this.template(this.model.attributes));
                 this.$modalEl = $('.modal', this.$el);
                 this.$modalEl.on('hidden.bs.modal', this.clearForm);
@@ -29,11 +29,17 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'text!template/a
                 this.$modalEl.modal('hide');
             },
 
-            clearForm: function () {
-                $('.input-name, .input-phone', this.$el).val('');
+            createContact: function () {
+                this.setModelAttributes();
+                this.hide();
+                this.triggerEvent('create-contact');
             },
 
-            getFormData:function () {
+            setModelAttributes: function () {
+                this.model.set(this.getAttributes());
+            },
+
+            getAttributes: function () {
                 return {
                     name: $('.input-name', this.$el).val(),
                     phone: $('.input-phone', this.$el).val(),
@@ -43,10 +49,11 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'text!template/a
                 };
             },
 
-            createContact: function () {
-                this.trigger('create-contact');
-                this.hide();
-                this.model = new Contact();
+            triggerEvent: function (event) {
+                var that = this;
+                this.$modalEl.on('hidden.bs.modal', function () {
+                    that.trigger(event);
+                });
             }
         });
     });
