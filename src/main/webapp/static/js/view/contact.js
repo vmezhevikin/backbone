@@ -17,6 +17,11 @@ define(['bootstrap', 'underscore', 'backbone', 'view/delete-dialog', 'text!templ
 
             render: function () {
                 this.$el.html(this.template(this.model.attributes));
+                this.renderDeleteDialog();
+                return this;
+            },
+
+            renderDeleteDialog: function () {
                 this.deleteDialog = new DeleteDialog({
                     model: this.model
                 });

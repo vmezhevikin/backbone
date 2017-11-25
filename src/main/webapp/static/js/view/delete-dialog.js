@@ -29,9 +29,13 @@ define(['bootstrap', 'underscore', 'backbone', 'text!template/delete-dialog.html
 
             deleteContact: function () {
                 this.hide();
+                this.triggerEvent('deletion-confirmed');
+            },
+
+            triggerEvent: function (event) {
                 var that = this;
                 this.$modalEl.on('hidden.bs.modal', function () {
-                    that.trigger('deletion-confirmed');
+                    that.trigger(event);
                 });
             }
         });
