@@ -12,7 +12,7 @@ public interface DataService {
 
     Contact updateContact(Integer id, Contact contact);
 
-    void deleteContact(Integer id);
+    Contact deleteContact(Integer id);
 
     List<Group> getAllGroups();
 }

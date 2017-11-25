@@ -61,9 +61,11 @@ public class DataServiceImpl implements DataService {
 
     @Override
     @Transactional
-    public void deleteContact(Integer id) {
+    public Contact deleteContact(Integer id) {
         LOGGER.info("deleteContact id={}", id);
-        contactRepository.delete(id);
+        Contact contact = contactRepository.findOne(id);
+        contactRepository.delete(contact);
+        return contact;
     }
 
     @Override

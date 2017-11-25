@@ -42,8 +42,8 @@ public class DataContactController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteContact(@PathVariable Integer id) {
+    public Contact deleteContact(@PathVariable Integer id) {
         LOGGER.info("deleteContact id={}", id);
-        dataService.deleteContact(id);
+        return dataService.deleteContact(id);
     }
 }
