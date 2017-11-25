@@ -14,10 +14,8 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'text!template/a
             },
 
             render: function () {
-                console.log('render');
                 this.$el.html(this.template(this.model.attributes));
                 this.$modalEl = $('.modal', this.$el);
-                this.$modalEl.on('hidden.bs.modal', this.clearForm);
                 return this;
             },
 
