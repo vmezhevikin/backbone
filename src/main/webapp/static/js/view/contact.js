@@ -21,9 +21,7 @@ define(['bootstrap', 'underscore', 'backbone', 'view/delete-dialog', 'text!templ
                     model: this.model
                 });
                 this.$el.append(this.deleteDialog.$el);
-
                 this.listenTo(this.deleteDialog, 'deletion-confirmed', this.deleteContact);
-
                 return this;
             },
 

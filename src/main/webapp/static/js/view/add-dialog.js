@@ -1,5 +1,5 @@
-define(['bootstrap', 'underscore', 'backbone', 'text!template/add-dialog.html'],
-    function ($, _, Backbone, addDialogTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'text!template/add-dialog.html'],
+    function ($, _, Backbone, Contact, addDialogTemplate) {
 
         return Backbone.View.extend({
 
@@ -10,15 +10,14 @@ define(['bootstrap', 'underscore', 'backbone', 'text!template/add-dialog.html'],
             },
 
             initialize: function () {
+                this.model = new Contact();
                 this.render();
             },
 
             render: function () {
-                this.$el.html(this.template);
+                this.$el.html(this.template(this.model.attributes));
                 this.$modalEl = $('.modal', this.$el);
-
                 this.$modalEl.on('hidden.bs.modal', this.clearForm);
-
                 return this;
             },
 
@@ -47,6 +46,7 @@ define(['bootstrap', 'underscore', 'backbone', 'text!template/add-dialog.html'],
             createContact: function () {
                 this.trigger('create-contact');
                 this.hide();
+                this.model = new Contact();
             }
         });
     });

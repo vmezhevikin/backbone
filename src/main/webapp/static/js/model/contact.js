@@ -3,11 +3,12 @@ define(['underscore', 'backbone'],
 
         return Backbone.Model.extend({
             defaults: {
-                'name': 'name',
-                'phone': '+3801234567',
+                'name': '',
+                'phone': '',
                 'image': '',
                 'group': {
-                    'id': 1
+                    'id': 1,
+                    'description': ''
                 }
             }
         });

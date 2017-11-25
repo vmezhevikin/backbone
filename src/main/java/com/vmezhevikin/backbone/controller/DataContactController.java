@@ -17,15 +17,6 @@ public class DataContactController {
     @Autowired
     private DataService dataService;
 
-  /*
-    url               HTTP Method  Operation
-    /api/contact      GET          Get an array of all books
-    /api/contact/:id  GET          Get the book with id of :id
-    /api/contact      POST         Add a new book and return the book with an id attribute added
-    /api/contact/:id  PUT          Update the book with id of :id
-    /api/contact/:id  DELETE       Delete the book with id of :id
-   */
-
     @RequestMapping(method = RequestMethod.GET)
     public List<Contact> getAllContacts() {
         LOGGER.info("getAllContacts");
