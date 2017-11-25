@@ -1,5 +1,5 @@
-define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'view/add-dialog', 'text!template/add-contact.html'],
-    function ($, _, Backbone, Contact, AddDialog, addContactTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'view/add-dialog', 'text!template/add-contact.html'],
+    function ($, _, Backbone, AddDialog, addContactTemplate) {
 
         return Backbone.View.extend({
 
