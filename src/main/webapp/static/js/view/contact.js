@@ -18,74 +18,53 @@ define(['bootstrap', 'underscore', 'backbone', 'view/dialog-delete', 'view/dialo
 
             render: function () {
                 this.$el.html(this.template(this.model.attributes));
-                this.renderDialogDelete();
-                this.renderDialogUpdate();
+                this.dialogDelete = this.renderDialog(DialogDelete, 'contact-delete', this.deleteContact);
+                this.dialogUpdate = this.renderDialog(DialogUpdate, 'contact-update', this.updateContact);
                 return this;
             },
 
-            renderDialogDelete: function () {
-                this.dialogDelete = new DialogDelete({
+            renderDialog: function (Dialog, event, callback) {
+                var dialog = new Dialog({
                     model: this.model
                 });
-                this.$el.append(this.dialogDelete.$el);
-                this.listenTo(this.dialogDelete, 'contact-delete', this.deleteContact);
-                return this;
-            },
-
-            showDialogDelete: function () {
-                this.dialogDelete.show();
-            },
-
-            hideDialogDelete: function () {
-                this.dialogDelete.hide();
-            },
-
-            removeDialogDelete: function () {
-                this.dialogDelete.remove();
-            },
-
-            deleteContact: function () {
-                var that = this;
-                this.model.destroy({
-                    wait: true,
-                    success: function () {
-                        that.removeDialogDelete();
-                        that.removeDialogUpdate();
-                        that.remove();
-                    }
-                });
-            },
-
-            renderDialogUpdate: function () {
-                this.dialogUpdate = new DialogUpdate({
-                    model: this.model
-                });
-                this.$el.append(this.dialogUpdate.$el);
-                this.listenTo(this.dialogUpdate, 'contact-update', this.updateContact);
-                return this;
+                this.$el.append(dialog.$el);
+                this.listenTo(dialog, event, callback);
+                return dialog;
             },
 
             showDialogUpdate: function () {
                 this.dialogUpdate.show();
             },
 
-            hideDialogUpdate: function () {
-                this.dialogUpdate.hide();
+            showDialogDelete: function () {
+                this.dialogDelete.show();
             },
 
-            removeDialogUpdate: function () {
+            removeDialogs: function () {
                 this.dialogUpdate.remove();
+                this.dialogDelete.remove();
+            },
+
+            deleteContact: function () {
+                var that = this;
+                var options = {
+                    success: function () {
+                        that.removeDialogs();
+                        that.remove();
+                    }
+                };
+                this.model.destroy(options);
             },
 
             updateContact: function () {
                 var that = this;
-                this.model.save(null, {
+                var options = {
                     success: function () {
-                        that.removeDialogDelete();
-                        that.removeDialogUpdate();
+                        that.removeDialogs();
                         that.render();
                     }
-                });
+                };
+                this.model.save(null, options);
             }
         });
     });
