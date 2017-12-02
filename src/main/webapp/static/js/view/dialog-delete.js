@@ -9,6 +9,10 @@ define(['bootstrap', 'underscore', 'view/dialog', 'text!template/dialog-delete.h
                 'click .contact-delete-button': 'deleteContact'
             },
 
+            initialize: function () {
+                this.render();
+            },
+
             deleteContact: function () {
                 this.hide();
                 this.triggerEvent('contact-delete');

@@ -6,13 +6,22 @@ define(['bootstrap', 'underscore', 'view/dialog', 'text!template/dialog-create.h
             template: _.template(dialogCreateTemplate),
 
             events: {
-                'click .contact-create-button': 'createContact'
+                'click .contact-create-button': 'createContact',
+                'hidden.bs.modal': 'removeErrorMessages'
+            },
+
+            initialize: function () {
+                this.render();
+                this.bindValidation();
             },
 
             createContact: function () {
+                this.removeErrorMessages();
                 this.setModelAttributes();
-                this.hide();
-                this.triggerEvent('contact-create');
+                if (this.isModelValid()) {
+                    this.hide();
+                    this.triggerEvent('contact-create');
+                }
             }
         });
     });

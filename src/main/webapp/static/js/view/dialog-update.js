@@ -6,13 +6,22 @@ define(['bootstrap', 'underscore', 'view/dialog', 'text!template/dialog-create.h
             template: _.template(dialogUpdateTemplate),
 
             events: {
-                'click .contact-update-button': 'updateContact'
+                'click .contact-update-button': 'updateContact',
+                'hidden.bs.modal': 'removeErrorMessages'
+            },
+
+            initialize: function () {
+                this.render();
+                this.bindValidation();
             },
 
             updateContact: function () {
+                this.removeErrorMessages();
                 this.setModelAttributes();
-                this.hide();
-                this.triggerEvent('contact-update');
+                if (this.isModelValid()) {
+                    this.hide();
+                    this.triggerEvent('contact-update');
+                }
             }
         });
     });

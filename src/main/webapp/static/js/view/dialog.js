@@ -3,10 +3,6 @@ define(['bootstrap', 'underscore', 'backbone'],
 
         return Backbone.View.extend({
 
-            initialize: function () {
-                this.render();
-            },
-
             render: function () {
                 this.$el.html(this.template(this.model.attributes));
                 this.$modalEl = $('.modal', this.$el);
@@ -22,17 +18,48 @@ define(['bootstrap', 'underscore', 'backbone'],
             },
 
             setModelAttributes: function () {
-                this.model.set(this.getAttributes());
+                this.model.set(this.getForm(), { validate : true });
             },
 
-            getAttributes: function () {
+            isModelValid: function () {
+                return this.model.isValid();
+            },
+
+            getForm: function () {
                 return {
-                    name: $('.input-name', this.$el).val(),
-                    phone: $('.input-phone', this.$el).val(),
+                    name: $('[name="name"]', this.$el).val(),
+                    phone: $('[name="phone"]', this.$el).val(),
                     group: {
-                        id: $('.input-group', this.$el).val()
+                        id: $('[name="group"]', this.$el).val()
                     }
+
                 };
+            },
+
+            bindValidation: function () {
+                var that = this;
+                Backbone.Validation.bind(this, {
+                    invalid: that.addErrorMessage
+                });
+            },
+
+            addErrorMessage: function (view, attr, error) {
+                var $help = $('<span>', {
+                    class: 'help-block',
+                    html: error
+                });
+                var $parentDiv = $('[name="' + attr + '"]', view.$el).parents('.form-group');
+                $parentDiv.addClass('has-error');
+                $parentDiv.append($help);
+            },
+
+            removeErrorMessages: function () {
+                $('.help-block', this.$el).remove();
+                $('.form-group', this.$el).removeClass('has-error');
+            },
+
+            unbindValidation: function () {
+                Backbone.Validation.unbind(this);
             },
 
             triggerEvent: function (event) {

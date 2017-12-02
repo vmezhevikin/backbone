@@ -39,6 +39,7 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'view/dialog-cre
             },
 
             removeDialogCreate: function () {
+                this.dialogCreate.unbindValidation();
                 this.dialogCreate.remove();
             },
 

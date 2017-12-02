@@ -5,6 +5,7 @@ require.config({
         underscore: 'lib/underscore/underscore-1.8.3',
         bootstrap: 'lib/bootstrap/bootstrap-3.3.7',
         backbone: 'lib/backbone/backbone-1.3.3',
+        validation: 'lib/backbone/backbone-validation-amd-0.11.5',
         text: 'lib/require/text-2.0.15'
     },
     shim: {

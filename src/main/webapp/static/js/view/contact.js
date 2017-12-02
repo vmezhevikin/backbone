@@ -41,6 +41,7 @@ define(['bootstrap', 'underscore', 'backbone', 'view/dialog-delete', 'view/dialo
             },
 
             removeDialogs: function () {
+                this.dialogUpdate.unbindValidation();
                 this.dialogUpdate.remove();
                 this.dialogDelete.remove();
             },
