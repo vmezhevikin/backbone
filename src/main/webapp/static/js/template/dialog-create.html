@@ -5,39 +5,43 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                {{ if (type == 'update') { }}
+                <h4 class="modal-title">Update contact</h4>
+                {{ } else { }}
                 <h4 class="modal-title">Add new contact</h4>
+                {{ } }}
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <label class="control-label">Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Please enter contact name" value="<%= contact.name %>"/>
+                    <input type="text" name="name" class="form-control" placeholder="Please enter contact name" value="{{= contact.name }}"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Phone</label>
-                    <input type="text" name="phone" class="form-control" placeholder="Please enter contact phone (+38-##-###-##-##)" maxlength="13" value="<%= contact.phone %>"/>
+                    <input type="text" name="phone" class="form-control" placeholder="Please enter contact phone (+38-##-###-##-##)" maxlength="13" value="{{= contact.phone }}"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Group</label>
-                    <select name="group" class="form-control" title="<%= contact.group.description %>">
+                    <select name="group" class="form-control" title="{{= contact.group.description }}">
                         <option value="0">Please select contact category</option>
-                        <option value="1" <%= contact.group.id == 1 ? 'selected' : '' %> >category1</option>
-                        <option value="2" <%= contact.group.id == 2 ? 'selected' : '' %> >category2</option>
-                        <option value="3" <%= contact.group.id == 3 ? 'selected' : '' %> >category3</option>
-                        <option value="4" <%= contact.group.id == 4 ? 'selected' : '' %> >category4</option>
-                        <option value="5" <%= contact.group.id == 5 ? 'selected' : '' %> >category5</option>
+                        <option value="1" {{= contact.group.id == 1 ? 'selected' : '' }} >category1</option>
+                        <option value="2" {{= contact.group.id == 2 ? 'selected' : '' }} >category2</option>
+                        <option value="3" {{= contact.group.id == 3 ? 'selected' : '' }} >category3</option>
+                        <option value="4" {{= contact.group.id == 4 ? 'selected' : '' }} >category4</option>
+                        <option value="5" {{= contact.group.id == 5 ? 'selected' : '' }} >category5</option>
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close
                 </button>
-                <% if (type == 'update') { %>
+                {{ if (type == 'update') { }}
                 <button type="button" class="btn btn-primary contact-update-button">Update
                 </button>
-                <% } else { %>
+                {{ } else { }}
                 <button type="button" class="btn btn-primary contact-create-button">Create
                 </button>
-                <% } %>
+                {{ } }}
             </div>
         </div>
     </div>

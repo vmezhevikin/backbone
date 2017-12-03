@@ -1,24 +1,33 @@
 require.config({
     baseUrl: '/static/js/',
     paths: {
-        jquery: 'lib/jquery/jquery-3.2.1',
-        underscore: 'lib/underscore/underscore-1.8.3',
-        bootstrap: 'lib/bootstrap/bootstrap-3.3.7',
-        backbone: 'lib/backbone/backbone-1.3.3',
-        validation: 'lib/backbone/backbone-validation-amd-0.11.5',
-        text: 'lib/require/text-2.0.15'
+        'jquery': 'lib/jquery/jquery-3.2.1',
+        'underscore-raw': 'lib/underscore/underscore-1.8.3',
+        'underscore-config': 'config/underscore',
+        'bootstrap': 'lib/bootstrap/bootstrap-3.3.7',
+        'backbone': 'lib/backbone/backbone-1.3.3',
+        'validation': 'lib/backbone/backbone-validation-amd-0.11.5',
+        'text': 'lib/require/text-2.0.15'
     },
     shim: {
-        underscore: {
+        'underscore-raw': {
             exports: '_'
         },
-        backbone: {
+        'backbone': {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
-        bootstrap: {
+        'bootstrap': {
             deps: ['jquery'],
             exports: 'jQuery'
+        }
+    },
+    map: {
+        '*': {
+            'underscore': 'underscore-config'
+        },
+        'underscore-config': {
+            'underscore': 'underscore-raw'
         }
     }
 });
