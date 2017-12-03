@@ -3,12 +3,6 @@ define(['bootstrap', 'underscore', 'backbone'],
 
         return Backbone.View.extend({
 
-            render: function () {
-                this.$el.html(this.template(this.model.attributes));
-                this.$modalEl = $('.modal', this.$el);
-                return this;
-            },
-
             show: function () {
                 this.$modalEl.modal('show');
             },

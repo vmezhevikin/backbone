@@ -9,6 +9,12 @@ define(['bootstrap', 'underscore', 'view/dialog', 'text!template/dialog-delete.h
                 'click .contact-delete-button': 'deleteContact'
             },
 
+            render: function () {
+                this.$el.html(this.template(this.model.attributes));
+                this.$modalEl = $('.modal', this.$el);
+                return this;
+            },
+
             initialize: function () {
                 this.render();
             },

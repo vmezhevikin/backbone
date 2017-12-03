@@ -15,6 +15,15 @@ define(['bootstrap', 'underscore', 'view/dialog', 'text!template/dialog-create.h
                 this.bindValidation();
             },
 
+            render: function () {
+                this.$el.html(this.template({
+                    type: 'update',
+                    contact: this.model.attributes
+                }));
+                this.$modalEl = $('.modal', this.$el);
+                return this;
+            },
+
             updateContact: function () {
                 this.removeErrorMessages();
                 this.setModelAttributes();
