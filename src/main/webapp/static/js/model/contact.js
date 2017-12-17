@@ -25,7 +25,7 @@ define(['underscore', 'backbone', 'validation'],
                     msg: 'Phone number format should be (+38-##-###-##-##)'
                 }],
                 'group': function (value) {
-                    if (!value || !value.id) {
+                    if (!value || !value.id || value.id === '0') {
                         return 'Please select a group';
                     }
                 }
