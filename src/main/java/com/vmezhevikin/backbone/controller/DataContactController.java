@@ -1,6 +1,8 @@
 package com.vmezhevikin.backbone.controller;
 
+import com.vmezhevikin.backbone.Constants;
 import com.vmezhevikin.backbone.entity.*;
+import com.vmezhevikin.backbone.model.PaginatedResponse;
 import com.vmezhevikin.backbone.service.*;
 import java.util.*;
 import org.slf4j.*;
@@ -45,5 +47,22 @@ public class DataContactController {
     public Contact deleteContact(@PathVariable Integer id) {
         LOGGER.info("deleteContact id={}", id);
         return dataService.deleteContact(id);
+    }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public PaginatedResponse<Contact> getPaginatedContacts(
+            @RequestParam(value = "page", defaultValue = Constants.DEFAULT_PAGE) int page,
+            @RequestParam(value = "perPage", defaultValue = Constants.DEFAULT_PER_PAGE) int perPage,
+            @RequestParam(value = "sort", defaultValue = Constants.DEFAULT_SORT) String sort,
+            @RequestParam(value = "order", defaultValue = Constants.DEFAULT_ORDER) String order) {
+        LOGGER.info("getPaginatedContacts page={}, perPage={}, sort={}, order={}", 
+            page, perPage, sort, order);
+        List<Contact> contacts = dataService.getContactsPage(page, perPage, sort, order);
+        long totalRecords = dataService.getTotalContactsCount();
+        int totalPages = (int) totalRecords / perPage;
+        return PaginatedResponse.<Contact>builder()
+                .currentPage(page).totalPages(totalPages)
+                .pageSize(contacts.size()).totalRecords(totalRecords)
+                .records(contacts).build();
     }
 }

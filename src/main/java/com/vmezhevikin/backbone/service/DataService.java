@@ -15,4 +15,8 @@ public interface DataService {
     Contact deleteContact(Integer id);
 
     List<Group> getAllGroups();
+
+    List<Contact> getContactsPage(int page, int perPage, String sort, String order);
+
+    long getTotalContactsCount();
 }

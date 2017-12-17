@@ -73,4 +73,17 @@ public class DataServiceImpl implements DataService {
         LOGGER.info("getAllGroups");
         return groupRepository.findAll();
     }
+
+    @Override
+    public List<Contact> getContactsPage(int page, int perPage, String sort, String order) {
+        LOGGER.info("getPaginatedContacts page={}, perPage={}, sort={}, order={}", 
+                page, perPage, sort, order);
+        int offset = (page - 1) * perPage;
+        return contactRepository.find(perPage, offset, sort, order);
+    }
+
+    @Override
+    public long getTotalContactsCount() {
+        return contactRepository.count();
+    }
 }
