@@ -20,9 +20,20 @@ public class DataContactController {
     private DataService dataService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Contact> getAllContacts() {
-        LOGGER.info("getAllContacts");
-        return dataService.getAllContacts();
+    public PaginatedResponse<Contact> getPaginatedContacts(
+            @RequestParam(value = "page", defaultValue = Constants.DEFAULT_PAGE) int page,
+            @RequestParam(value = "perPage", defaultValue = Constants.DEFAULT_PER_PAGE) int perPage,
+            @RequestParam(value = "sort", defaultValue = Constants.DEFAULT_SORT) String sort,
+            @RequestParam(value = "order", defaultValue = Constants.DEFAULT_ORDER) String order) {
+        LOGGER.info("getPaginatedContacts page={}, perPage={}, sort={}, order={}", 
+            page, perPage, sort, order);
+        List<Contact> contacts = dataService.getContactsPage(page, perPage, sort, order);
+        long totalRecords = dataService.getTotalContactsCount();
+        int totalPages = (int) totalRecords / perPage;
+        return PaginatedResponse.<Contact>builder()
+                .currentPage(page).totalPages(totalPages)
+                .pageSize(perPage).totalRecords(totalRecords)
+                .records(contacts).build();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -47,22 +58,5 @@ public class DataContactController {
     public Contact deleteContact(@PathVariable Integer id) {
         LOGGER.info("deleteContact id={}", id);
         return dataService.deleteContact(id);
-    }
-
-    @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public PaginatedResponse<Contact> getPaginatedContacts(
-            @RequestParam(value = "page", defaultValue = Constants.DEFAULT_PAGE) int page,
-            @RequestParam(value = "perPage", defaultValue = Constants.DEFAULT_PER_PAGE) int perPage,
-            @RequestParam(value = "sort", defaultValue = Constants.DEFAULT_SORT) String sort,
-            @RequestParam(value = "order", defaultValue = Constants.DEFAULT_ORDER) String order) {
-        LOGGER.info("getPaginatedContacts page={}, perPage={}, sort={}, order={}", 
-            page, perPage, sort, order);
-        List<Contact> contacts = dataService.getContactsPage(page, perPage, sort, order);
-        long totalRecords = dataService.getTotalContactsCount();
-        int totalPages = (int) totalRecords / perPage;
-        return PaginatedResponse.<Contact>builder()
-                .currentPage(page).totalPages(totalPages)
-                .pageSize(contacts.size()).totalRecords(totalRecords)
-                .records(contacts).build();
     }
 }
