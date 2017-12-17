@@ -1,11 +1,11 @@
-define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'view/dialog-create', 'text!template/contact-create.html'],
-    function ($, _, Backbone, Contact, DialogCreate, contactCreateTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'view/dialog-create', 'text!template/nav-panel.html'],
+    function ($, _, Backbone, Contact, DialogCreate, navPanelTemplate) {
 
         return Backbone.View.extend({
 
             el: '#nav-panel',
             tagName: 'div',
-            template: _.template(contactCreateTemplate),
+            template: _.template(navPanelTemplate),
 
             events: {
                 'click #show-dialog-create': 'showDialogCreate'
