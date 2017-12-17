@@ -6,13 +6,19 @@ define(['jquery', 'underscore', 'backbone', 'view/contact'],
             el: '#contact-list',
 
             initialize: function () {
-                this.collection.fetch({ reset: true });
-                this.render();
-                this.listenTo(this.collection, 'add', this.renderContact);
+                this.handleRender();
+                this.listenTo(this.collection, 'add', this.handleRender);
                 this.listenTo(this.collection, 'reset', this.render);
+                this.listenTo(this.collection, 'remove', this.handleRender);
+            },
+
+            handleRender: function() {
+                this.collection.fetch();
+                this.render();
             },
 
             render: function () {
+                this.$el.empty();
                 this.collection.each(function (contact) {
                     this.renderContact(contact);
                 }, this);

@@ -8,11 +8,31 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'view/dialog-cre
             template: _.template(navPanelTemplate),
 
             events: {
-                'click #show-dialog-create': 'showDialogCreate'
+                'click #show-dialog-create': 'showDialogCreate',
+                'click #firstPage': 'goToFirstPage',
+                'click #previousPage': 'goToPreviousPage',
+                'click #nextPage': 'goToNextPage',
+                'click #lastPage': 'goToLastPage'
             },
 
             initialize: function () {
                 this.render();
+            },
+
+            goToFirstPage: function() {
+                this.collection.getFirstPage({reset:true});
+            },
+
+            goToPreviousPage: function() {
+                this.collection.getPreviousPage({reset:true});
+            },
+
+            goToNextPage: function() {
+                this.collection.getNextPage({reset:true});
+            },
+
+            goToLastPage: function() {
+                this.collection.getLastPage({reset:true});
             },
 
             render: function () {

@@ -3,7 +3,7 @@ define(['underscore', 'backbone', 'model/contact', 'pagination'],
 
         return Backbone.PageableCollection.extend({
             model: Contact,
-            url: '/api/contact/page',
+            url: '/api/contact',
             
             mode: 'server',
             
@@ -25,23 +25,15 @@ define(['underscore', 'backbone', 'model/contact', 'pagination'],
             },
             
             parseState: function (response, queryParams, state, options) {
-                console.log('response, queryParams, state, options');
-                console.log(response);
-                console.log(queryParams);
-                console.log(state);
-                console.log(options);
                 return {
-                	currentPage: response.page,
-                	totalPages: response.totalPages,
-                	pageSize: response.pageSize,
+                    currentPage: response.currentPage,
+                    totalPages: response.totalPages,
+                    pageSize: response.pageSize,
                     totalRecords: response.totalRecords
                 };
             },
             
             parseRecords: function (response, options) {
-                console.log('response, options');
-                console.log(response);
-                console.log(options);
                 return response.records;
             }
         });
