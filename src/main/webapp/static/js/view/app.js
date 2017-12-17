@@ -1,5 +1,5 @@
-define(['bootstrap', 'underscore', 'backbone', 'view/contact-create', 'view/contact-list', 'text!template/app.html'],
-    function ($, _, Backbone, ContactCreateView, ContactListView, appTemplate) {
+define(['bootstrap', 'underscore', 'backbone', 'view/nav-panel', 'view/contact-list', 'text!template/app.html'],
+    function ($, _, Backbone, NavPanelView, ContactListView, appTemplate) {
 
         return Backbone.View.extend({
 
@@ -9,7 +9,7 @@ define(['bootstrap', 'underscore', 'backbone', 'view/contact-create', 'view/cont
 
             initialize: function () {
                 this.render();
-                new ContactCreateView({
+                new NavPanelView({
                     collection: this.collection
                 });
                 new ContactListView({

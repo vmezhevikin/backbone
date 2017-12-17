@@ -3,7 +3,7 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'view/dialog-cre
 
         return Backbone.View.extend({
 
-            el: '#contact-create',
+            el: '#nav-panel',
             tagName: 'div',
             template: _.template(contactCreateTemplate),
 
