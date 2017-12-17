@@ -31,6 +31,7 @@ RequireJS (Text) 2.0
 jQuery 3.2
 Backbone 1.3
 Backbone.Validation 0.11.5 (Thomas Pedersen http://thedersen.com/projects/backbone-validation)
+Backbone.paginator 2.0.6 (Jimmy Yuen Ho Wong https://github.com/backbone-paginator/backbone.paginator)
 Bootstrap 3.3
 ```
 
@@ -38,5 +39,6 @@ Bootstrap 3.3
 
 ```
 Contact list
-Add/delete contact
+Pagination
+Create/update/delete contact
 ```

@@ -7,6 +7,7 @@ require.config({
         'bootstrap': 'lib/bootstrap/bootstrap-3.3.7',
         'backbone': 'lib/backbone/backbone-1.3.3',
         'validation': 'lib/backbone/backbone-validation-amd-0.11.5',
+        'pagination': 'lib/backbone/backbone-paginator-2.0.6',
         'text': 'lib/require/text-2.0.15'
     },
     shim: {

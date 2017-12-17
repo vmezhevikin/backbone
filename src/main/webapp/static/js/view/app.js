@@ -18,7 +18,6 @@ define(['bootstrap', 'underscore', 'backbone', 'view/contact-create', 'view/cont
             },
 
             render: function () {
-                console.log(_.templateSettings);
                 this.$el.html(this.template);
                 return this;
             }
