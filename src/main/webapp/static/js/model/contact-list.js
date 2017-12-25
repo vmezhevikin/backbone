@@ -8,8 +8,8 @@ define(['underscore', 'backbone', 'model/contact', 'pagination'],
             mode: 'server',
             
             state: {
-                firstPage: 1,
-                currentPage: 1,
+                firstPage: 0,
+                currentPage: 0,
                 pageSize: 5,
                 sortKey: 'id',
                 order: -1

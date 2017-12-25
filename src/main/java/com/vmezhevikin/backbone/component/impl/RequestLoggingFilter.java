@@ -16,6 +16,7 @@ public class RequestLoggingFilter extends AbstractAppFilter {
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain
             chain) throws IOException, ServletException {
+        LOGGER.info("======================================");
         try {
             LOGGER.info("Request: {} {}", HttpRequestUtil.getMethod(request), HttpRequestUtil.getFullUrl(request));
             chain.doFilter(request, response);

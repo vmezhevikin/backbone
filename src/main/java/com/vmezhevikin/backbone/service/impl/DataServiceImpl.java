@@ -8,6 +8,10 @@ import java.util.*;
 import org.apache.commons.lang.*;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
@@ -78,12 +82,19 @@ public class DataServiceImpl implements DataService {
     public List<Contact> getContactsPage(int page, int perPage, String sort, String order) {
         LOGGER.info("getPaginatedContacts page={}, perPage={}, sort={}, order={}", 
                 page, perPage, sort, order);
-        int offset = (page - 1) * perPage;
-        return contactRepository.find(perPage, offset, sort, order);
+        Pageable pageable = prepearePageable(page, perPage, sort, order);
+        return contactRepository.findAll(pageable).getContent();
+    }
+
+    private Pageable prepearePageable(int page, int pageSize, String sortProperty, String order) {
+        Direction direction = Direction.fromString(order);
+        Sort sort = new Sort(direction, sortProperty);
+        return new PageRequest(page, pageSize, sort);
     }
 
     @Override
     public long getTotalContactsCount() {
+        LOGGER.info("getTotalContactsCount");
         return contactRepository.count();
     }
 }

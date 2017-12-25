@@ -1,19 +1,48 @@
-<div class="col-xs-12">
-    <div aria-label="Page navigation">
-        <ul class="pager">
-            <li><a href="#" id="firstPage">First</a></li>
-            <li><a href="#" id="previousPage">Previous</a></li>
-            <li><a href="#" id="nextPage">Next</a></li>
-            <li><a href="#" id="lastPage">Last</a></li>
-        </ul>
-    </div>
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" 
+        data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Contact list</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Contact list</a>
 </div>
-<div class="col-xs-12">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <button id="show-dialog-create" type="button" class="btn btn-success pull-right">Add
-                new contact
-            </button>
-        </div>
-    </div>
+
+<div class="collapse navbar-collapse" id="navbar-collapse">
+    <ul class="nav navbar-nav">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                aria-haspopup="true" aria-expanded="false">Sort <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="sort-default">Default</a></li>
+                <li><a href="#" id="sort-name">Name</a></li>
+                <li><a href="#" id="sort-group">Group</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                aria-haspopup="true" aria-expanded="false">Order <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="sort-asc">Ascending</a></li>
+                <li><a href="#" id="sort-desc">Descending</a></li>
+            </ul>
+        </li>
+        <li id="first-page-li"><a href="#" id="first-page">First</a></li>
+        <li id="previous-page-li"><a href="#" id="previous-page">Previous</a></li>
+        <li id="next-page-li"><a href="#" id="next-page">Next</a></li>
+        <li id="last-page-li"><a href="#" id="last-page">Last</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="show-dialog-create">Add new contact</a></li>
+            </ul>
+        </li>
+    </ul>
 </div>

@@ -9,30 +9,83 @@ define(['bootstrap', 'underscore', 'backbone', 'model/contact', 'view/dialog-cre
 
             events: {
                 'click #show-dialog-create': 'showDialogCreate',
-                'click #firstPage': 'goToFirstPage',
-                'click #previousPage': 'goToPreviousPage',
-                'click #nextPage': 'goToNextPage',
-                'click #lastPage': 'goToLastPage'
+                'click #first-page': 'goToFirstPage',
+                'click #previous-page': 'goToPreviousPage',
+                'click #next-page': 'goToNextPage',
+                'click #last-page': 'goToLastPage',
+                'click #sort-default': 'sortDefault',
+                'click #sort-name': 'sortName',
+                'click #sort-group': 'sortGroup',
+                'click #sort-asc': 'sortAsc',
+                'click #sort-desc': 'sortDesc'
             },
 
             initialize: function () {
                 this.render();
+
+                this.sortOrder = -1;
+                this.sortKey = 'id';
+
+                this.listenTo(this.collection, 'all', this.updatePageButtons);
             },
 
             goToFirstPage: function() {
-                this.collection.getFirstPage({reset:true});
+                this.collection.getFirstPage({fetch: true});
             },
 
             goToPreviousPage: function() {
-                this.collection.getPreviousPage({reset:true});
+                this.collection.getPreviousPage({fetch: true});
             },
 
             goToNextPage: function() {
-                this.collection.getNextPage({reset:true});
+                this.collection.getNextPage({fetch: true});
             },
 
             goToLastPage: function() {
-                this.collection.getLastPage({reset:true});
+                this.collection.getLastPage({fetch: true});
+            },
+
+            updatePageButtons: function() {
+                var $previousButtons = $('#first-page-li, #previous-page-li');
+                var $nextButtons = $('#next-page-li, #last-page-li');
+                $previousButtons.addClass('disabled');
+                $nextButtons.addClass('disabled');
+                if (this.collection.hasPreviousPage()) {
+                    $previousButtons.removeClass('disabled');
+                }
+                if (this.collection.hasNextPage()) {
+                    $nextButtons.removeClass('disabled');
+                }
+            },
+
+            sortDefault: function() {
+            	this.sortKey = 'id';
+                this.sortCollection();
+            },
+
+            sortName: function() {
+            	this.sortKey = 'name';
+                this.sortCollection();
+            },
+
+            sortGroup: function() {
+                this.sortKey = 'group_id';
+                this.sortCollection();
+            },
+
+            sortAsc: function() {
+                this.sortOrder = -1;
+                this.sortCollection();
+            },
+
+            sortDesc: function() {
+                this.sortOrder = 1;
+                this.sortCollection();
+            },
+
+            sortCollection: function() {
+                this.collection.setSorting(this.sortKey, this.sortOrder, {side: 'server', full: false});
+                this.collection.getFirstPage();
             },
 
             render: function () {

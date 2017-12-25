@@ -22,7 +22,7 @@ define(['underscore', 'backbone', 'validation'],
                     msg: 'Please enter a phone number'
                 }, {
                     pattern: /^(\+380)(\d){9}$/,
-                    msg: 'Phone number format should be (+38-##-###-##-##)'
+                    msg: 'Phone number format should be (+380#########)'
                 }],
                 'group': function (value) {
                     if (!value || !value.id || value.id === '0') {
