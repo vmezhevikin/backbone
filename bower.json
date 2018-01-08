@@ -1,0 +1,26 @@
+{
+    "name": "backbone",
+    "homepage": "https://github.com/vmezhevikin/backbone",
+    "authors": [
+        "vmezhevikin <ve.mezhevikin@gmail.com>"
+    ],
+    "description": "Backbone training project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "requirejs": "~2.3.5",
+        "requirejs-text": "~2.0.15",
+        "jquery": "~3.2.1",
+        "underscore": "~1.8.3",
+        "backbone": "~1.3.3",
+        "backbone.paginator": "~2.0.6",
+        "backbone-validation": "~0.11.5",
+        "bootstrap": "~3.3.7"
+    },
+    "ignore": [
+        "**/.*",
+        "test",
+        "api",
+        "examples"
+    ]
+}

@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Backbone</title>
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
-    <link rel="stylesheet" href="/static/css/lib/bootstrap.css">
+    <link rel="stylesheet" href="/static/vendor/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/app.css">
-    <script data-main="/static/js/app" src="/static/js/lib/require/require-2.3.5.js"></script>
+    <script data-main="/static/js/app" src="/static/vendor/requirejs/require.js"></script>
 </head>
 <body id="app"></body>
 </html>

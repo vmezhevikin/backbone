@@ -26,6 +26,7 @@ Spring Security 3.1 as security framework
 ##### JavaScript frameworks
 
 ```
+Bower 1.8.2
 RequireJS 2.3
 RequireJS (Text) 2.0
 jQuery 3.2

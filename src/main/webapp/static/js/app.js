@@ -1,14 +1,14 @@
 require.config({
     baseUrl: '/static/js/',
     paths: {
-        'jquery': 'lib/jquery/jquery-3.2.1',
-        'underscore-raw': 'lib/underscore/underscore-1.8.3',
+        'jquery': '../vendor/jquery/dist/jquery',
+        'underscore-raw': '../vendor/underscore/underscore',
         'underscore-config': 'config/underscore',
-        'bootstrap': 'lib/bootstrap/bootstrap-3.3.7',
-        'backbone': 'lib/backbone/backbone-1.3.3',
-        'validation': 'lib/backbone/backbone-validation-amd-0.11.5',
-        'pagination': 'lib/backbone/backbone-paginator-2.0.6',
-        'text': 'lib/require/text-2.0.15'
+        'bootstrap': '../vendor/bootstrap/dist/js/bootstrap',
+        'backbone': '../vendor/backbone/backbone',
+        'validation': '../vendor/backbone-validation/dist/backbone-validation-amd',
+        'pagination': '../vendor/backbone.paginator/lib/backbone.paginator',
+        'text': '../vendor/requirejs-text/text'
     },
     shim: {
         'underscore-raw': {
