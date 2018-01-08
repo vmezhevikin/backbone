@@ -7,7 +7,7 @@ import org.springframework.core.io.*;
 
 @Configuration
 @ComponentScan({"com.vmezhevikin.backbone.component.impl", "com.vmezhevikin.backbone.service.impl",
-        "com.vmezhevikin.backbone.controller"})
+        "com.vmezhevikin.backbone.repository.impl", "com.vmezhevikin.backbone.controller"})
 public class ServiceConfig {
 
     @Bean
